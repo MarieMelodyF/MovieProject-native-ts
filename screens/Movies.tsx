@@ -34,9 +34,9 @@ export function Movies({ navigation }: Props) {
               fontSize: 20,
             }}
           >
-            {/* {films.title} */}
-            <Text style={{ color: "black" }}>TEST</Text>
+            {films.title}
           </Text>
+          <Text style={{ color: "black" }}>TEST</Text>
         </TouchableOpacity>
       </View>
     );
