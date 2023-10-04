@@ -10,7 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 export type RootStackParamList = {
   Home: undefined;
   Movies: undefined;
-  OneMovie: { movieId: string };
+  OneMovie: { movieId: number; title: string; img: any; describe: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -26,12 +26,3 @@ export default function App(): JSX.Element {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

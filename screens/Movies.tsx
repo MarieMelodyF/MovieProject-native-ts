@@ -1,46 +1,46 @@
-import { Button, Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { View, Text, TouchableOpacity, Button, StyleSheet } from "react-native";
 import { RootStackParamList } from "../App";
 import Data from "../data/data.json";
+import { OneMovie } from "./OneMovie";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Movies">;
 
-console.log(Data);
-export function Movies({ navigation }: Props) {
-  Data.map((films, index) => {
-    // console.log(films.title);
-    return (
-      <View style={[styles.bcgBlack, styles.height]}>
-        <Text
-          style={{
-            color: "white",
-            padding: 15,
-            fontSize: 20,
-            textAlign: "center",
-            marginTop: 20,
-          }}
-        >
-          Vos films préférés
-        </Text>
-
-        <TouchableOpacity
-          onPress={() => {
-            //   navigation.navigate("OneMovie");
-          }}
-        >
-          <Text
+export function Movies({ navigation }: Props): JSX.Element {
+  return (
+    <View style={[styles.bcgBlack, styles.DisplayFlexCent, styles.height]}>
+      {Data.map((films, index) => {
+        return (
+          <TouchableOpacity
+            key={index}
             style={{
-              color: "white",
-              fontSize: 20,
+              backgroundColor: "darkred",
+              padding: 15,
+              borderRadius: 10,
+              margin: 10,
+            }}
+            onPress={() => {
+              navigation.navigate("OneMovie", {
+                movieId: films._id,
+                title: films.title,
+                img: films.poster_path,
+                describe: films.overview,
+              });
             }}
           >
-            {films.title}
-          </Text>
-          <Text style={{ color: "black" }}>TEST</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  });
+            <Text
+              style={{
+                color: "white",
+                fontSize: 20,
+              }}
+            >
+              {films.title}
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
 }
 const styles = StyleSheet.create({
   bcgBlack: {
@@ -53,8 +53,5 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-  },
-  txtAlign: {
-    textAlign: "center",
   },
 });
